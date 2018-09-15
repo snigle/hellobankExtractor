@@ -19,9 +19,9 @@ Téléchargez l'ensemble de vos relevés bancaire chez hello bank.
 # Téléchargez l'ensemble des relevés
  * Vérifier que cette commande fonctionne et vous affiche l'ensemble des liens de téléchargement de vos relevés (vous devez avoir <b>jq et xarg</b>)
  ```
- cat releves.json | jq -r ".data.rechercheCriteresDemat.mapDocuments[\"Comptes d'épargne\"].listeDocument[] | \"https://www.hellobank.fr/demat-wspl/rest/consultationDocumentDemat?ibanCrypte=\(.ibanCrypte)&idDocument=\(.idDoc)&typeCpt=\(.typeCompte)&typeDoc=RELEV&typeFamille=R001&familleDoc=\(.famDoc)&consulted=true&idLocalisation=\(.idLocalisation)&viDocDocument=\(.viDocDocument)&dateDocument=\(.dateDoc)&ikpiPersonne=\""
+ cat releves.json | jq -r ".data.rechercheCriteresDemat.mapDocuments[] | .listeDocument[] | \"https://www.hellobank.fr/demat-wspl/rest/consultationDocumentDemat?ibanCrypte=\(.ibanCrypte)&idDocument=\(.idDoc)&typeCpt=\(.typeCompte)&typeDoc=RELEV&typeFamille=R001&familleDoc=\(.famDoc)&consulted=true&idLocalisation=\(.idLocalisation)&viDocDocument=\(.viDocDocument)&dateDocument=\(.dateDoc)&ikpiPersonne=\""
  ```
  * Téléchargez les relevés à l'aide de votre navigateur sur lequel vous êtes connecté à hello bank (ici chromium-browser).
  ```
- cat releves.json | jq -r ".data.rechercheCriteresDemat.mapDocuments[\"Comptes d'épargne\"].listeDocument[] | \"https://www.hellobank.fr/demat-wspl/rest/consultationDocumentDemat?ibanCrypte=\(.ibanCrypte)&idDocument=\(.idDoc)&typeCpt=\(.typeCompte)&typeDoc=RELEV&typeFamille=R001&familleDoc=\(.famDoc)&consulted=true&idLocalisation=\(.idLocalisation)&viDocDocument=\(.viDocDocument)&dateDocument=\(.dateDoc)&ikpiPersonne=\"" | xargs -n 1 chromium-browser 
+ cat releves.json | jq -r ".data.rechercheCriteresDemat.mapDocuments[] | .listeDocument[] | \"https://www.hellobank.fr/demat-wspl/rest/consultationDocumentDemat?ibanCrypte=\(.ibanCrypte)&idDocument=\(.idDoc)&typeCpt=\(.typeCompte)&typeDoc=RELEV&typeFamille=R001&familleDoc=\(.famDoc)&consulted=true&idLocalisation=\(.idLocalisation)&viDocDocument=\(.viDocDocument)&dateDocument=\(.dateDoc)&ikpiPersonne=\"" | xargs -n 1 chromium-browser 
  ```
